@@ -11,18 +11,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.myshop.dto.ItemDto;
 
-@Controller		//컨트롤러의 역할을 하는 클래스를 정의
-@RequestMapping(value = "/thymeleaf")	//url의 경로를 지정해준다
+@Controller //컨트롤러의 역할을 하는 클래스를 정의
+@RequestMapping(value = "/thymeleaf") //request url 경로지정
 public class ThymeleafExController {
-	@GetMapping(value = "/ex01")	//url 지정 (현재 클래스의 경로까지 합쳐서 http://localhost/thymeleaf/Ex01 이다)
+	
+	@GetMapping(value = "/ex01")
 	public String thymeleafEx01(Model model) {
 		model.addAttribute("data", "타임리프 예제 입니다.");
-		return "thymeleafEx/thymeleafEx01";	//경로를 그대로 적어준다
+		return "thymeleafEx/thymeleafEx01";
 	}
 	
 	@GetMapping(value = "/ex02")
 	public String thymeleafEx02(Model model) {
 		ItemDto itemDto = new ItemDto();
+		
 		itemDto.setItemNm("테스트 상품");
 		itemDto.setPrice(10000);
 		itemDto.setItemDetail("테스트 상품 상세 설명");
@@ -30,7 +32,7 @@ public class ThymeleafExController {
 		
 		model.addAttribute("itemDto", itemDto);
 		
-		return "thymeleafEx/thymeleafEx02";	//경로를 그대로 적어준다
+		return "thymeleafEx/thymeleafEx02";
 	}
 	
 	@GetMapping(value = "/ex03")
@@ -38,7 +40,7 @@ public class ThymeleafExController {
 		
 		List<ItemDto> itemDtoList = new ArrayList<>();
 		
-		for (int i=1; i<=10; i++) {
+		for(int i=1; i<=10; i++) {			
 			ItemDto itemDto = new ItemDto();
 			itemDto.setItemNm("테스트 상품" + i);
 			itemDto.setPrice(10000 + i);
@@ -49,8 +51,8 @@ public class ThymeleafExController {
 		}
 		
 		model.addAttribute("itemDtoList", itemDtoList);
-		
-		return "thymeleafEx/thymeleafEx03";	//경로를 그대로 적어준다
+
+		return "thymeleafEx/thymeleafEx03";
 	}
 	
 	@GetMapping(value = "/ex04")
@@ -58,7 +60,7 @@ public class ThymeleafExController {
 		
 		List<ItemDto> itemDtoList = new ArrayList<>();
 		
-		for (int i=1; i<=10; i++) {
+		for(int i=1; i<=10; i++) {			
 			ItemDto itemDto = new ItemDto();
 			itemDto.setItemNm("테스트 상품" + i);
 			itemDto.setPrice(10000 + i);
@@ -69,43 +71,27 @@ public class ThymeleafExController {
 		}
 		
 		model.addAttribute("itemDtoList", itemDtoList);
-		
-		return "thymeleafEx/thymeleafEx04";	//경로를 그대로 적어준다
+
+		return "thymeleafEx/thymeleafEx04";
 	}
 	
 	@GetMapping(value = "/ex05")
 	public String thymeleafEx05(Model model) {
-		
-		List<ItemDto> itemDtoList = new ArrayList<>();
-		
-		for (int i=1; i<=10; i++) {
-			ItemDto itemDto = new ItemDto();
-			itemDto.setItemNm("테스트 상품" + i);
-			itemDto.setPrice(10000 + i);
-			itemDto.setItemDetail("테스트 상품 상세 설명" + i);
-			itemDto.setRegTime(LocalDateTime.now());
-			
-			itemDtoList.add(itemDto);
-		}
-		
-		model.addAttribute("itemDtoList", itemDtoList);
-		
-		return "thymeleafEx/thymeleafEx05";	//경로를 그대로 적어준다
+		return "thymeleafEx/thymeleafEx05";
 	}
 	
-	//경로용 ex06 => 매개변수를 지정하여 ex05의 데이터를 전달해주는 메소드이다
 	@GetMapping(value = "/ex06")
 	public String thymeleafEx06(String param1, String param2, Model model) {
-		System.out.println(param1 + "  " + param2 + "  " + model);
+//		System.out.println(param1 + "," + param2);
 		
 		model.addAttribute("param1", param1);
 		model.addAttribute("param2", param2);
 		
-		return "thymeleafEx/thymeleafEx06";	//경로를 그대로 적어준다
+		return "thymeleafEx/thymeleafEx06";
 	}
 	
 	@GetMapping(value = "/ex07")
 	public String thymeleafEx07(Model model) {
-		return "thymeleafEx/thymeleafEx07";	//경로를 그대로 적어준다
+		return "thymeleafEx/thymeleafEx07";
 	}
 }
